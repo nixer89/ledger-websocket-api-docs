@@ -50,7 +50,8 @@ Clients can send the following commands to the WebSocket server:
     "command": "unsubscribe",
     "stream": "trades",
     "base": "XRP",
-    "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD"
+    "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
+    "types": "amm"
   }
   ```
 
@@ -79,7 +80,7 @@ The server will respond to commands with a JSON message containing a status code
 ```json
 {
   "code": 200,
-  "message": "Successfully subscribed to: trades_XRP|USD"
+  "message": "Successfully subscribed to: trades_XRP|rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD_amm"
 }
 ```
 
@@ -93,34 +94,3 @@ If an error occurs, the server will respond with a JSON message containing a sta
   "message": "Invalid request: Invalid trading pair"
 }
 ```
-
-### WebSocket Events
-- **open**: Triggered when a WebSocket connection is opened.
-- **message**: Triggered when a message is received from the client.
-- **close**: Triggered when a WebSocket connection is closed.
-
-### Redis Integration
-The server subscribes to Redis channels to receive updates and publish them to WebSocket clients.
-
-**Channels**:
-- `trades`
-- `ledgers`
-- `ledger_and_exchanges`
-
-### Scheduled Jobs
-The server periodically reloads the WebSocket API keys from a key file.
-
-**Schedule**:
-- Every 5 minutes.
-
-### Helper Functions
-- `sendMessage(ws, code, message)`: Sends a message to the WebSocket client.
-- `checkInputDataBasic(data)`: Checks the basic validity of the input data.
-- `checkInputDataSingleTrades(data)`: Checks the validity of the input data for single trades.
-- `createChannelId(data)`: Creates a channel ID based on the subscription data.
-- `publishMessageOnChannelTrades(server, channel, message)`: Publishes a message on a trades channel.
-- `publishMessageOnChannel(server, channel, message)`: Publishes a message on a channel.
-- `loadWebsocketKeys()`: Loads the WebSocket API keys from the key file.
-- `isValidAddress(address)`: Checks if an address is valid.
-
-This documentation provides an overview of the WebSocket API and its usage. For more details, refer to the source code.
