@@ -1,58 +1,60 @@
 # ledger-feed
-publishes information about the ledger via websocket
+Publishes information about the ledger via WebSocket.
 
-# WebSocket API Documentation
+## WebSocket API Documentation
 
-## Overview
+### Overview
 This WebSocket API allows clients to subscribe to trade and ledger updates from the XRP Ledger. Clients can subscribe to specific trading pairs or to all trades and ledgers.
 
-## WebSocket Server
-- **URL**: `ws:s//stream.xrpldata.com`
+### WebSocket Server
+- **URL**: `wss://stream.xrpldata.com`
 
-## Authentication
+### Authentication
 Clients must provide an API key in the request headers to establish a WebSocket connection.
 
 **Header**:
 - `x-api-key`: Your API key.
 
-## Commands
+### Commands
 Clients can send the following commands to the WebSocket server:
 
-### Subscribe
+#### Subscribe
 - **Command**: `subscribe`
 - **Stream**: `trades` or `ledgers`
 - **Parameters for trades**:
   - `base`: Base currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
-  - `quote`: Quote currency (e.g., `all`, `*`, `USD`, `issuer+token`)
+  - `quote`: Quote currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
   - `trades`: `all` or `latest`
+  - `types`: `all`, `dex`, or `amm`
 - **Example**:
   ```json
   {
     "command": "subscribe",
     "stream": "trades",
     "base": "XRP",
-    "quote": "USD",
-    "trades": "all"
+    "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
+    "trades": "all",
+    "types": "amm"
   }
   ```
 
-### Unsubscribe
+#### Unsubscribe
 - **Command**: `unsubscribe`
 - **Stream**: `trades` or `ledgers`
 - **Parameters for trades**:
   - `base`: Base currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
-  - `quote`: Quote currency (e.g., `all`, `*`, `USD`, `issuer+token`)
+  - `quote`: Quote currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
 - **Example**:
   ```json
   {
     "command": "unsubscribe",
     "stream": "trades",
     "base": "XRP",
-    "quote": "USD"
+    "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD"
   }
   ```
 
-### List Subscriptions
+#### List Subscriptions
 - **Command**: `list_subscriptions`
 - **Example**:
   ```json
@@ -61,7 +63,7 @@ Clients can send the following commands to the WebSocket server:
   }
   ```
 
-### Unsubscribe All
+#### Unsubscribe All
 - **Command**: `unsubscribe_all`
 - **Example**:
   ```json
@@ -70,7 +72,7 @@ Clients can send the following commands to the WebSocket server:
   }
   ```
 
-## Responses
+### Responses
 The server will respond to commands with a JSON message containing a status code and a message.
 
 **Example**:
@@ -81,7 +83,7 @@ The server will respond to commands with a JSON message containing a status code
 }
 ```
 
-## Error Handling
+### Error Handling
 If an error occurs, the server will respond with a JSON message containing a status code and an error message.
 
 **Example**:
@@ -92,12 +94,12 @@ If an error occurs, the server will respond with a JSON message containing a sta
 }
 ```
 
-## WebSocket Events
+### WebSocket Events
 - **open**: Triggered when a WebSocket connection is opened.
 - **message**: Triggered when a message is received from the client.
 - **close**: Triggered when a WebSocket connection is closed.
 
-## Redis Integration
+### Redis Integration
 The server subscribes to Redis channels to receive updates and publish them to WebSocket clients.
 
 **Channels**:
@@ -105,13 +107,13 @@ The server subscribes to Redis channels to receive updates and publish them to W
 - `ledgers`
 - `ledger_and_exchanges`
 
-## Scheduled Jobs
+### Scheduled Jobs
 The server periodically reloads the WebSocket API keys from a key file.
 
 **Schedule**:
 - Every 5 minutes.
 
-## Helper Functions
+### Helper Functions
 - `sendMessage(ws, code, message)`: Sends a message to the WebSocket client.
 - `checkInputDataBasic(data)`: Checks the basic validity of the input data.
 - `checkInputDataSingleTrades(data)`: Checks the validity of the input data for single trades.
