@@ -24,8 +24,8 @@ Clients can send the following commands to the WebSocket server:
 - **Parameters for trades**:
   - `base`: Base currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
   - `quote`: Quote currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
-  - `trades`: `all` or `latest`
-  - `types`: `all`, `dex`, or `amm`
+  - `type`: `all` or `latest`
+  - `exchange`: `all`, `dex`, or `amm`
 - **Example**:
   ```json
   {
@@ -33,10 +33,21 @@ Clients can send the following commands to the WebSocket server:
     "stream": "trades",
     "base": "XRP",
     "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
-    "trades": "all",
-    "types": "amm"
+    "type": "all",
+    "exchange": "amm"
   }
   ```
+
+### Subscribe Response
+The server will respond with a JSON message containing a status code and a message.
+
+**Example**:
+```json
+{
+  "code": 200,
+  "message": "Successfully subscribed to: trades_XRP|rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD_all_amm"
+}
+```
 
 #### Unsubscribe
 - **Command**: `unsubscribe`
@@ -51,7 +62,8 @@ Clients can send the following commands to the WebSocket server:
     "stream": "trades",
     "base": "XRP",
     "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
-    "types": "amm"
+    "type": "all",
+    "exchange": "amm"
   }
   ```
 
@@ -72,17 +84,6 @@ Clients can send the following commands to the WebSocket server:
     "command": "unsubscribe_all"
   }
   ```
-
-### Responses
-The server will respond to commands with a JSON message containing a status code and a message.
-
-**Example**:
-```json
-{
-  "code": 200,
-  "message": "Successfully subscribed to: trades_XRP|rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD_amm"
-}
-```
 
 ### Error Handling
 If an error occurs, the server will respond with a JSON message containing a status code and an error message.
