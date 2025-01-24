@@ -55,22 +55,22 @@ Whenever a trade on one of your subscriptions happens, you receive a message in 
 **Example**:
 ```json
 {
-  pair: 'XRP|rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD',
-  rate: 2.8306259103514932,
-  volume_base: 345.834205,
-  volume_quote: 978.92726135881,
-  buyer: 'rs9ineLqrCzeAGS1bxsrW8x2n3bRJYAh3Q',
-  seller: 'rU2ctdgT5jcCMuMP5C3zM57aTt7tUe71cM',
-  taker: 'rU2ctdgT5jcCMuMP5C3zM57aTt7tUe71cM',
-  provider: 'rs9ineLqrCzeAGS1bxsrW8x2n3bRJYAh3Q',
-  isAMM: true,
-  autobridged: null,
-  tx_hash: '1DFC33471C2044AAB1080AD2CEE1CFA27DDE5512B2F86DE1A210B5885EE84BD9',
-  tx_type: 'OfferCreate',
-  offer_sequence: null,
-  ledger_index: 93674332,
-  tx_index: 22,
-  ledger_close_time_utc: '2025-01-24T12:33:52.000Z'
+  "pair": "XRP|rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
+  "rate": 2.8306259103514932,
+  "volume_base": 345.834205,
+  "volume_quote": 978.92726135881,
+  "buyer": "rs9ineLqrCzeAGS1bxsrW8x2n3bRJYAh3Q",
+  "seller": "rU2ctdgT5jcCMuMP5C3zM57aTt7tUe71cM",
+  "taker": "rU2ctdgT5jcCMuMP5C3zM57aTt7tUe71cM",
+  "provider": "rs9ineLqrCzeAGS1bxsrW8x2n3bRJYAh3Q",
+  "isAMM": true,
+  "autobridged": null,
+  "tx_hash": "1DFC33471C2044AAB1080AD2CEE1CFA27DDE5512B2F86DE1A210B5885EE84BD9",
+  "tx_type": "OfferCreate",
+  "offer_sequence": null,
+  "ledger_index": 93674332,
+  "tx_index": 22,
+  "ledger_close_time_utc": "2025-01-24T12:33:52.000Z"
 }
 ```
 
