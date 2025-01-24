@@ -1,5 +1,5 @@
-# ledger-feed
-Publishes information about the ledger via WebSocket.
+# XRPL Websocket Stream
+Subscribe and get notified on various events happening on the XRPL, such as trades.
 
 ## WebSocket API Documentation
 
