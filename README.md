@@ -20,12 +20,13 @@ Clients can send the following commands to the WebSocket server:
 
 #### Subscribe
 - **Command**: `subscribe`
-- **Stream**: `trades` or `ledgers`
+- **Stream**: `trades` or `ledgers` or `sourcetags`
+  
 - **Parameters for trades**:
-  - `base`: Base currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
-  - `quote`: Quote currency (e.g., `all`, `*`, `XRP`, `issuer+token`)
-  - `type`: `all` or `latest`
-  - `exchange`: `all`, `dex`, or `amm`
+  - `base`: Base currency (e.g., `"all"`, `"*"`, `"XRP"`, `"issuer+token"`)
+  - `quote`: Quote currency (e.g., `"all"`, `"*"`, `"XRP"`, `"issuer+token"`)
+  - `type`: `"all"` or `"latest"`
+  - `exchange`: `"all"`, `"dex"`, or `"amm"`
 - **Example**:
   ```json
   {
@@ -35,6 +36,19 @@ Clients can send the following commands to the WebSocket server:
     "quote": "rhub8VRN55s94qWKDv6jmDy1pUykJzF3wq+USD",
     "type": "all",
     "exchange": "amm"
+  }
+  ```
+
+- **Parameters for sourcetags**:
+  - `tag`: SourceTag to filter (e.g., `"all"`, `"*"`, `123456789`)
+  - `tx_result`: Result of the transaction (e.g., `"all"`, `"*"`, `"success"`)
+- **Example**:
+  ```json
+  {
+    "command": "subscribe",
+    "stream": "sourcetags",
+    "tag": 123456789,
+    "tx_result": "success",
   }
   ```
 
