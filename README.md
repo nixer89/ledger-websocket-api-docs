@@ -48,7 +48,7 @@ Clients can send the following commands to the WebSocket server:
     "command": "subscribe",
     "stream": "sourcetags",
     "tag": 123456789,
-    "tx_result": "success",
+    "tx_result": "success"
   }
   ```
 
